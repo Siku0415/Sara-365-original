@@ -22,7 +22,7 @@ import {
 import { motion, AnimatePresence } from 'motion/react';
 
 // Configuration
-const DOWNLOAD_LINK = "https://sara365.xyz/sara365.apk";
+const DOWNLOAD_LINK = "https://sara365.fun/Sara365.apk";
 const PRIMARY_COLOR = "#EAB308"; // Professional Yellow for Sara 365
 const ACCENT_COLOR = "#111827"; // Dark contrast
 
@@ -50,6 +50,11 @@ const App: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  const handleDownload = () => {
+    // Open the direct link in a new window to trigger download without login prompts
+    window.open(DOWNLOAD_LINK, '_blank');
+  };
+
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
@@ -68,14 +73,17 @@ const App: React.FC = () => {
             <span>SARA<span className="text-gray-400">365</span></span>
           </div>
 
-          <div className="hidden md:flex items-center gap-8 font-medium italic">
-            <a href="#" className="hover:text-yellow-700 transition-colors">Home</a>
-            <a href="#markets" className="hover:text-yellow-700 transition-colors">Markets</a>
-            <a href="#features" className="hover:text-yellow-700 transition-colors">Features</a>
-            <a href={DOWNLOAD_LINK} className="bg-[#EAB308] text-white px-6 py-2 rounded-full font-bold shadow-lg shadow-yellow-100 hover:scale-105 active:scale-95 transition-all">
-              Download App
-            </a>
-          </div>
+            <div className="hidden md:flex items-center gap-8 font-medium italic">
+              <a href="#" className="hover:text-yellow-700 transition-colors">Home</a>
+              <a href="#markets" className="hover:text-yellow-700 transition-colors">Markets</a>
+              <a href="#features" className="hover:text-yellow-700 transition-colors">Features</a>
+              <button 
+                onClick={handleDownload}
+                className="bg-[#EAB308] text-white px-6 py-2 rounded-full font-bold shadow-lg shadow-yellow-100 hover:scale-105 active:scale-95 transition-all cursor-pointer"
+              >
+                Download App
+              </button>
+            </div>
 
           <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden p-2 text-[#EAB308]">
             {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -96,9 +104,12 @@ const App: React.FC = () => {
               <a href="#" onClick={() => setIsMenuOpen(false)}>Home</a>
               <a href="#markets" onClick={() => setIsMenuOpen(false)}>Markets</a>
               <a href="#features" onClick={() => setIsMenuOpen(false)}>Features</a>
-              <a href={DOWNLOAD_LINK} className="bg-[#EAB308] text-white py-4 rounded-2xl flex items-center justify-center gap-2">
+              <button 
+                onClick={(e) => { setIsMenuOpen(false); handleDownload(e); }}
+                className="bg-[#EAB308] text-white py-4 rounded-2xl flex items-center justify-center gap-2 font-bold cursor-pointer"
+              >
                 <Download size={20} /> Download App
-              </a>
+              </button>
             </div>
           </motion.div>
         )}
@@ -128,10 +139,13 @@ const App: React.FC = () => {
               Experience the next generation of gaming. Real-time results, secure payments, and instant payouts.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href={DOWNLOAD_LINK} className="bg-[#EAB308] text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-xl shadow-yellow-200 flex items-center justify-center gap-3 hover:bg-yellow-600 hover:-translate-y-1 transition-all group">
+              <button 
+                onClick={handleDownload}
+                className="bg-[#EAB308] text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-xl shadow-yellow-200 flex items-center justify-center gap-3 hover:bg-yellow-600 hover:-translate-y-1 transition-all group cursor-pointer"
+              >
                 <Download size={24} className="group-hover:bounce" />
                 Download App Now
-              </a>
+              </button>
               <a href="#markets" className="border-2 border-gray-100 bg-white px-8 py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 hover:bg-gray-50 transition-all">
                 <PlayCircle size={24} />
                 View Markets
@@ -250,12 +264,12 @@ const App: React.FC = () => {
                   </div>
                 </div>
 
-                <a 
-                  href={DOWNLOAD_LINK}
-                  className="w-full bg-[#EAB308] text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-yellow-600 transition-all shadow-md shadow-yellow-100 group-hover:scale-[1.02]"
+                <button 
+                  onClick={handleDownload}
+                  className="w-full bg-[#EAB308] text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-yellow-600 transition-all shadow-md shadow-yellow-100 group-hover:scale-[1.02] cursor-pointer"
                 >
                   <PlayCircle size={18} /> Play Now
-                </a>
+                </button>
               </motion.div>
             ))}
           </div>
@@ -391,18 +405,18 @@ const App: React.FC = () => {
       </footer>
 
       {/* Sticky Download Button */}
-      <motion.a 
-        href={DOWNLOAD_LINK}
+      <motion.button 
+        onClick={handleDownload}
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        className="fixed bottom-8 right-8 z-[100] bg-[#EAB308] text-white p-4 md:p-5 rounded-full shadow-2xl flex items-center gap-3 overflow-hidden group shadow-yellow-500/40"
+        className="fixed bottom-8 right-8 z-[100] bg-[#EAB308] text-white p-4 md:p-5 rounded-full shadow-2xl flex items-center gap-3 overflow-hidden group shadow-yellow-500/40 cursor-pointer border-none outline-none"
       >
         <Download size={24} className="relative z-10" />
         <span className="hidden md:block font-black text-sm relative z-10 whitespace-nowrap">DOWNLOAD APP</span>
         <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-      </motion.a>
+      </motion.button>
 
       <style dangerouslySetInnerHTML={{ __html: `
         @keyframes marquee {
