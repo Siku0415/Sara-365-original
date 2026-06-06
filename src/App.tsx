@@ -27,7 +27,7 @@ import {
 import { motion, AnimatePresence } from 'motion/react';
 import { translations, LANGUAGES, Language } from './translations';
 // @ts-ignore
-import appScreenshot from './assets/images/sara_app_screenshot_1780776943001.png';
+import appScreenshot from './assets/images/sara_model_hero_1780777999757.png';
 
 // Configuration
 const DOWNLOAD_LINK = "https://sara365.fun/Sara365.apk";
@@ -436,17 +436,17 @@ const App: React.FC = () => {
           </motion.div>
 
           <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative"
           >
-            <div className="relative z-10 w-full max-w-[320px] mx-auto overflow-hidden rounded-[3rem] border-8 border-gray-900 shadow-2xl bg-white aspect-[9/18]">
+            <div className="relative z-10 w-full max-w-[460px] mx-auto overflow-hidden rounded-[2rem] border-4 border-[#EAB308] shadow-[0_20px_50px_rgba(234,179,8,0.25)] bg-white aspect-[4/5]">
               {/* Promotion illustration */}
               <img 
                 src={appScreenshot} 
-                alt="Sara 365 App Screenshot" 
-                className="w-full h-full object-cover"
+                alt="Sara 365 Beautiful App Model" 
+                className="w-full h-full object-cover object-center"
                 referrerPolicy="no-referrer"
               />
             </div>
