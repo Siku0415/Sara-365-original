@@ -778,7 +778,9 @@ const App: React.FC = () => {
                 </div>
 
                 <button 
-                  onClick={handleDownload}
+                  onClick={() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
                   className="w-full bg-[#EAB308] text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-yellow-600 transition-all shadow-md shadow-yellow-100 group-hover:scale-[1.02] cursor-pointer"
                 >
                   <PlayCircle size={18} /> {t.playNow}
